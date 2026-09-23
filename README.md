@@ -104,7 +104,7 @@ Minimum Empirical Feature Set
 Multi-Seed Robustness Analysis
             │
             ▼
-Compact Intrinsic Representation
+Compact Intrinsic Representation.
 
 ---
 
