@@ -1,581 +1,306 @@
-🌌 Data-Driven Discovery of Minimal Intrinsic Curvature Dependencies in Spacetime Geometry
+Data-Driven Discovery of Minimal Intrinsic Curvature Dependencies in Spacetime Geometry
 
-<p align="center">A Machine-Learning Framework for Compact Intrinsic Geometric Representation of Spacetime
+<p align="center">A Data-Driven Framework for Identifying Compact Intrinsic Geometric Representations of Spacetime
 
-</p><p align="center">"Python" (https://img.shields.io/badge/Python-3.x-blue?logo=python)
-"XGBoost" (https://img.shields.io/badge/XGBoost-Machine%20Learning-orange)
-"Scikit-Learn" (https://img.shields.io/badge/Scikit--Learn-ML-F7931E?logo=scikit-learn)
-"Dataset" (https://img.shields.io/badge/Dataset-2M%20Samples-purple)
-"Features" (https://img.shields.io/badge/Features-42-red)
-"Minimal Representation" (https://img.shields.io/badge/Minimal%20Representation-8%20Features-brightgreen)
+</p><p align="center">""Python" (https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)" (https://www.python.org/)
+""XGBoost" (https://img.shields.io/badge/XGBoost-ML-1F425F)" (https://xgboost.readthedocs.io/)
+""Scikit-learn" (https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikit-learn&logoColor=white)" (https://scikit-learn.org/)
+""Dataset" (https://img.shields.io/badge/Dataset-2M%20samples-5B5B5B)" (#dataset)
+""Features" (https://img.shields.io/badge/Candidate%20features-42-5B5B5B)" (#feature-space)
+""Minimal representation" (https://img.shields.io/badge/Minimal%20representation-8%20features-2E7D32)" (#minimal-eight-feature-representation)
 
 </p>---
 
-🔭 Overview
+Abstract
 
-This repository contains the dataset, machine-learning implementation, analysis scripts, and visualization resources for the study:
+This repository contains the computational resources associated with the study “Data-Driven Discovery of Minimal Intrinsic Curvature Dependencies in Spacetime Geometry.”
 
-«Data-Driven Discovery of Minimal Intrinsic Curvature Dependencies in Spacetime Geometry»
+The study investigates whether a compact subset of physically meaningful intrinsic geometric descriptors can preserve sufficient information to distinguish a defined collection of spacetime geometries.
 
-The project investigates whether a compact subset of physically meaningful intrinsic geometric descriptors can preserve sufficient information to distinguish different spacetime geometries.
+Starting from 42 candidate descriptors, we employ XGBoost-based feature-importance analysis and systematic sequential feature reduction to identify an empirically minimal representation for eight selected spacetime families.
 
-The study begins with 42 candidate descriptors and uses XGBoost feature importance and systematic feature reduction to investigate descriptor redundancy and identify a compact representation.
+The resulting eight-feature representation is subsequently evaluated using independent test data and a 10-random-seed robustness analysis.
+
+«Scope: The identified eight-feature representation is an empirical result within the investigated descriptor space, data-generation framework, and selected spacetime families. It is not proposed as a universal mathematically complete set of spacetime invariants.»
 
 ---
 
-⭐ Main Result
+Research Objective
 
-42 Candidate Descriptors → 8 Intrinsic Descriptors
+The central research question is:
 
-The analysis identified the following eight-feature representation:
+«Can a compact subset of intrinsic geometric descriptors preserve the information required to distinguish the selected spacetime families?»
 
-#| Selected Descriptor
-🥇| "abs_K"
-🥈| "R"
-🥉| "r2_R"
+The study therefore focuses on:
+
+- identification of descriptor redundancy;
+- data-driven feature reduction;
+- compact intrinsic geometric representation;
+- classification consistency;
+- robustness to random data splits;
+- interpretation of the selected descriptors.
+
+The objective is not to replace Einstein's field equations or numerical relativity, but to investigate the informational structure of a predefined descriptor space.
+
+---
+
+Spacetime Families
+
+The dataset represents eight spacetime families:
+
+Class| Spacetime
+1| Minkowski
+2| Schwarzschild
+3| Kerr
+4| Reissner–Nordström
+5| Kerr–Newman
+6| de Sitter
+7| Anti-de Sitter
+8| FLRW
+
+---
+
+Dataset
+
+The study uses 2,000,000 synthetically generated samples, with an equal number of samples assigned to each spacetime family.
+
+Property| Value
+Total samples| 2,000,000
+Spacetime families| 8
+Samples per family| 250,000
+Candidate descriptors| 42
+Noise level| 0.005
+Training samples| 1,600,000
+Validation samples| 200,000
+Test samples| 200,000
+
+The samples are constructed from established analytical spacetime geometries and their associated geometric quantities.
+
+---
+
+Methodology
+
+The computational workflow is:
+
+Established Analytical Spacetime Families
+                    │
+                    ▼
+          Synthetic Data Generation
+                    │
+                    ▼
+          42 Candidate Descriptors
+                    │
+                    ▼
+            XGBoost Classification
+                    │
+                    ▼
+          Feature-Importance Ranking
+                    │
+                    ▼
+          Sequential Top-K Evaluation
+                    │
+                    ▼
+       Minimal 8-Feature Representation
+                    │
+                    ▼
+          Independent Test Evaluation
+                    │
+                    ▼
+        10-Seed Robustness Analysis
+
+Feature-selection strategy
+
+The feature-selection procedure consists of:
+
+1. ranking the 42 descriptors using XGBoost feature importance;
+2. evaluating progressively smaller Top-K representations;
+3. identifying the smallest representation satisfying the predefined performance criterion;
+4. evaluating the resulting representation on independent test data;
+5. repeating the evaluation across 10 random seeds.
+
+---
+
+Feature Space
+
+The original descriptor space contains 42 candidate variables:
+
+R
+Ricci2
+Kretschmann
+Weyl2
+Weyl4
+r2_R
+r4_Ricci2
+r4_K
+r4_Weyl2
+r8_Weyl4
+abs_R
+abs_Ricci2
+abs_K
+abs_Weyl2
+abs_Weyl4
+log_R
+log_Ricci2
+log_K
+log_Weyl2
+log_Weyl4
+EM_Field
+EM2
+EM4
+Charge_Spin
+Charge_Spin2
+Rotation
+Rotation2
+Rotation_Curvature
+Mass_Charge
+Mass_Spin
+Cosmological
+Cosmological2
+Expansion
+Expansion2
+Expansion_Curvature
+Parity1
+Parity2
+Parity3
+Curvature_Charge
+Curvature_Rotation
+Curvature_Cosmological
+Ricci_Weyl_Coupling
+
+---
+
+Minimal Eight-Feature Representation
+
+The systematic feature-reduction analysis identified the following eight descriptors:
+
+Rank| Descriptor
+1| "abs_K"
+2| "R"
+3| "r2_R"
 4| "Parity2"
 5| "Rotation2"
 6| "EM2"
 7| "log_R"
 8| "Cosmological"
 
-«[!IMPORTANT]
-The eight-feature representation is an empirical minimal representation within the investigated descriptor space and eight spacetime families. It is not claimed to be a universal mathematically complete set of spacetime descriptors.»
+Thus, the investigated descriptor space was reduced from:
+
+42 candidate descriptors → 8 descriptors
+
+while retaining the required classification performance under the study's predefined criterion.
 
 ---
 
-🌌 Spacetime Families
+Classification Performance
 
-The dataset contains eight spacetime families:
+Final Eight-Feature Model
 
-Class| Spacetime
-1| 🟦 Minkowski
-2| 🟩 Schwarzschild
-3| 🟨 Kerr
-4| 🟧 Reissner–Nordström
-5| 🟥 Kerr–Newman
-6| 🟪 de Sitter
-7| 🟫 Anti-de Sitter
-8| 🟦 FLRW
+Metric| Test Performance
+Accuracy| 0.999175
+Macro-F1| 0.999175
+Precision| 0.999176
+Recall| 0.999175
 
 ---
 
-📊 Dataset
+Robustness Across Random Seeds
 
-Dataset Summary
-
-Property| Value
-🧮 Total samples| 2,000,000
-🌌 Spacetime families| 8
-📐 Candidate descriptors| 42
-📦 Samples per class| 250,000
-🎲 Noise level| 0.005
-🧪 Training samples| 1,600,000
-🔬 Validation samples| 200,000
-🧾 Test samples| 200,000
-
----
-
-🚀 Machine-Learning Workflow
-
-flowchart LR
-    A[🌌 Analytical Spacetime Families]
-    B[🧮 Synthetic Dataset]
-    C[📐 42 Candidate Descriptors]
-    D[🌳 XGBoost]
-    E[📊 Feature Importance]
-    F[🔎 Sequential Top-K Analysis]
-    G[🎯 8-Feature Representation]
-    H[🧪 Independent Test]
-    I[🔁 10-Seed Robustness]
-    
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
-    G --> H
-    H --> I
-
----
-
-🏆 Classification Performance
-
-Final 8-Feature Model
-
-Metric| Performance
-🎯 Accuracy| 0.999175
-📊 Macro-F1| 0.999175
-🔵 Precision| 0.999176
-🟢 Recall| 0.999175
-
----
-
-🔁 10-Seed Robustness Analysis
-
-The final eight-feature representation was evaluated using 10 independent random seeds:
+The final eight-feature representation was evaluated using 10 random seeds:
 
 42, 52, 62, 72, 82,
 92, 102, 112, 122, 132
 
-Results
+Each seed corresponds to a new stratified train/validation/test split.
 
-Metric| Mean ± SD
-🎯 Test Accuracy| 0.999189 ± 0.000062
-📊 Macro-F1| 0.999189 ± 0.000062
-🔵 Precision| 0.999190 ± 0.000062
-🟢 Recall| 0.999189 ± 0.000062
+Aggregate Results
 
-Accuracy Range
+Metric| Mean ± Standard Deviation
+Test Accuracy| 0.999189 ± 0.000062
+Macro-F1| 0.999189 ± 0.000062
+Precision| 0.999190 ± 0.000062
+Recall| 0.999189 ± 0.000062
 
-Minimum: 0.999095
-Maximum: 0.999285
+Test accuracy range:
 
-95% Confidence Interval
+0.999095 – 0.999285
+
+95% confidence interval for the mean test accuracy:
 
 [0.999150, 0.999228]
 
-«[!TIP]
-The very small variation across the ten random seeds indicates that the observed performance of the compact representation is stable with respect to the tested random train/validation/test splits.»
+The multi-seed analysis is intended to assess the stability of the observed performance with respect to the tested random data partitions.
 
 ---
 
-📐 The 42 Candidate Descriptors
+Results and Visualizations
 
-R
-Ricci2
-Kretschmann
-Weyl2
-Weyl4
-
-r2_R
-r4_Ricci2
-r4_K
-r4_Weyl2
-r8_Weyl4
-
-abs_R
-abs_Ricci2
-abs_K
-abs_Weyl2
-abs_Weyl4
-
-log_R
-log_Ricci2
-log_K
-log_Weyl2
-log_Weyl4
-
-EM_Field
-EM2
-EM4
-
-Charge_Spin
-Charge_Spin2
-
-Rotation
-Rotation2
-Rotation_Curvature
-
-Mass_Charge
-Mass_Spin
-
-Cosmological
-Cosmological2
-
-Expansion
-Expansion2
-Expansion_Curvature
-
-Parity1
-Parity2
-Parity3
-
-Curvature_Charge
-Curvature_Rotation
-Curvature_Cosmological
-
-Ricci_Weyl_Coupling
-
----
-
-🖼️ Visualizations
-
-The repository includes the following figures:
+The repository contains the principal figures associated with the analysis:
 
 Figure| Description
-📈 Figure 1| Minimum-K Feature Analysis
-📊 Figure 2| 42-Feature Importance Ranking
-🔁 Figure 3| Multi-Seed Robustness
-🧩 Figure 4| Confusion Matrix — 8 Features
-📉 Figure 5| XGBoost Learning Curve
-🌐 Figure 6| 2D Intrinsic Spacetime Manifold
-🌌 Figure 7| 3D Intrinsic Spacetime Manifold
-🔥 Figure 8| 8-Feature Correlation Heatmap
+Figure 1| Minimum-K Feature Analysis
+Figure 2| 42-Feature Importance Ranking
+Figure 3| Multi-Seed Robustness
+Figure 4| Confusion Matrix for the Eight-Feature Representation
+Figure 5| XGBoost Learning Curve
+Figure 6| 2D Intrinsic Spacetime Manifold
+Figure 7| 3D Intrinsic Spacetime Manifold
+Figure 8| Correlation Heatmap of the Eight Selected Features
 
-Example
-
-Place figures inside the "figures/" directory and display them directly in the README:
-
-<p align="center">
-  <img src="figures/Figure_6_2D_Intrinsic_Spacetime_Manifold.png"
-       width="80%">
-</p>
+Figures can be viewed in the ""figures/"" (figures/) directory.
 
 ---
 
-🧠 Scientific Interpretation
+Scientific Scope and Limitations
 
-The central idea is not to replace General Relativity or Einstein's field equations.
+The results are restricted to:
 
-Instead, the study asks:
+- the eight spacetime families investigated;
+- the 42 candidate descriptors;
+- the specified synthetic data-generation framework;
+- the selected noise level;
+- the XGBoost-based feature-selection methodology;
+- the experimental evaluation protocol.
 
-«How much of the information contained in a larger set of intrinsic geometric descriptors is redundant for distinguishing a defined collection of spacetime families?»
+Accordingly, the eight-feature representation should be interpreted as an empirically minimal representation within the investigated setting.
 
-The workflow therefore investigates:
+It should not be interpreted as:
 
-- 🔹 descriptor redundancy
-- 🔹 intrinsic geometric representation
-- 🔹 feature importance
-- 🔹 systematic feature reduction
-- 🔹 classification consistency
-- 🔹 robustness across random splits
-- 🔹 geometric visualization
+- a universal basis of spacetime invariants;
+- a proof of descriptor completeness;
+- a replacement for Einstein's field equations;
+- a substitute for exact or numerical solutions of General Relativity.
 
----
-
-⚠️ Scientific Scope & Limitations
-
-«[!WARNING]
-The conclusions are restricted to the investigated eight spacetime families, 42 candidate descriptors, synthetic data-generation framework, noise level, and machine-learning methodology.»
-
-The eight-feature result should therefore not be interpreted as a universal basis or complete set of spacetime invariants.
-
-A mathematical completeness statement would require a substantially different theoretical analysis involving appropriate geometric equivalence relations and conditions for invariant characterization.
+A mathematical completeness result would require an independent theoretical treatment of invariant characterization and the appropriate geometric equivalence relations.
 
 ---
 
-🧪 Reproducibility
+Reproducibility
 
-The multi-seed experiment uses:
+The reported robustness experiment uses the following fixed seed set:
 
-SEEDS = [
-    42, 52, 62, 72, 82,
-    92, 102, 112, 122, 132
-]
+SEEDS = [42, 52, 62, 72, 82,
+         92, 102, 112, 122, 132]
 
-The feature-selection procedure separates:
+The repository is organized to separate:
 
 Feature Ranking
       ↓
 Top-K Evaluation
       ↓
-Minimal K Identification
+Minimal Representation
       ↓
-Independent Robustness Testing
-
-This allows the reduction from 42 → 8 descriptors to be evaluated systematically.
-
----
-
-📁 Repository Structure
-
-GR-Spacetime/
-│
-├── 📄 README.md
-├── 📄 LICENSE
-├── 📄 CITATION.cff
-│
-├── 📂 data/
-│   ├── GR_Spacetime_V4_FULL.csv
-│   ├── GR_Spacetime_V4_PARAMETERS.csv
-│   ├── GR_Spacetime_V4_FEATURES.csv
-│   ├── GR_Spacetime_V4_TRAIN.csv
-│   ├── GR_Spacetime_V4_VAL.csv
-│   ├── GR_Spacetime_V4_TEST.csv
-│   └── FEATURE_LIST.txt
-│
-├── 📂 src/
-│   ├── dataset_generation.py
-│   ├── feature_importance.py
-│   ├── minimum_k_analysis.py
-│   ├── multi_seed_robustness.py
-│   └── visualization.py
-│
-├── 📂 figures/
-│   ├── Figure_1_Minimum_K_Analysis.png
-│   ├── Figure_2_Feature_Importance_42.png
-│   ├── Figure_3_Multi_Seed_Robustness.png
-│   ├── Figure_4_Confusion_Matrix_8_Features.png
-│   ├── Figure_5_XGBoost_Learning_Curve.png
-│   ├── Figure_6_2D_Intrinsic_Spacetime_Manifold.png
-│   ├── Figure_7_3D_Intrinsic_Spacetime_Manifold.png
-│   └── Figure_8_8Feature_Correlation_Heatmap.png
-│
-└── 📂 results/
-    ├── feature_importance/
-    ├── minimum_k/
-    └── multi_seed/
-
----
-
-🛠️ Software
-
-The project uses:
-
-🐍 Python
-🔢 NumPy
-🐼 Pandas
-📊 Scikit-learn
-🌳 XGBoost
-📈 Matplotlib
-
-Additional packages may be required for manifold visualization.
-
----
-
-🔬 Research Questions
-
-Q1 — Discrimination
-
-Can intrinsic geometric descriptors distinguish the selected spacetime families?
-
-Q2 — Redundancy
-
-How much redundancy exists among the 42 candidate descriptors?
-
-Q3 — Minimality
-
-What is the smallest empirically sufficient descriptor subset within the investigated feature space?
-
-Q4 — Robustness
-
-Does the compact representation remain stable across random data splits?
-
-Q5 — Interpretation
-
-How can the selected descriptors be interpreted in relation to spacetime geometry?
-
----
-
-📚 Citation
-
-If you use this repository, dataset, or methodology in academic work, please cite:
-
-Hussain, M. M.; Bhatti, Z.-u.-H.; Rahman, J. U.
-
-Data-Driven Discovery of Minimal Intrinsic Curvature
-Dependencies in Spacetime Geometry.
-
-A formal citation will be updated after publication.
-
----
-
-👨‍🔬 Authors
-
-Mirza Mudassar Hussain
-PhD Research Scholar
-Abdus Salam School of Mathematical Sciences
-University of the Punjab, Lahore, Pakistan
-
-Zaeem-ul-Haq Bhatti
-University of the Punjab
-
-Jamshaid Ul Rahman
-
----
-
-🌟 Project Status
-
-🟢 Dataset: Generated
-🟢 Feature analysis: Completed
-🟢 8-feature representation: Identified
-🟢 10-seed robustness: Completed
-🟢 Visualizations: Generated
-🟡 Manuscript: Under development
-🟡 Publication: In preparation
-
----
-
-<p align="center">🌌 From 42 descriptors to an 8-feature intrinsic representation
-
-Data → Geometry → Machine Learning → Minimal Representation
-
-</p>
-A systematic machine-learning workflow based on XGBoost feature importance and sequential feature reduction is used to investigate descriptor redundancy and identify a compact representation.
-
-The analysis considers eight spacetime families:
-
-1. Minkowski
-2. Schwarzschild
-3. Kerr
-4. Reissner–Nordström
-5. Kerr–Newman
-6. de Sitter
-7. Anti-de Sitter
-8. FLRW
-
-The dataset contains 2,000,000 synthetic samples, with 250,000 samples generated for each spacetime family.
-
-Main Finding
-
-Starting from 42 candidate descriptors, the analysis identified the following eight-feature representation:
-
-abs_K
-R
-r2_R
-Parity2
-Rotation2
-EM2
-log_R
-Cosmological
-
-Using these eight descriptors, the final XGBoost classifier achieved:
-
-Metric| Result
-Test Accuracy| 0.999175
-Macro-F1| 0.999175
-Precision| 0.999176
-Recall| 0.999175
-
+Independent Testing
+      ↓
 Multi-Seed Robustness
 
-To examine sensitivity to random data splitting, the final eight-feature representation was evaluated across 10 random seeds:
+This separation allows the feature-reduction procedure and its robustness to be independently inspected.
 
-42, 52, 62, 72, 82,
-92, 102, 112, 122, 132
-
-The resulting test performance was:
-
-Metric| Mean ± SD
-Accuracy| 0.999189 ± 0.000062
-Macro-F1| 0.999189 ± 0.000062
-Precision| 0.999190 ± 0.000062
-Recall| 0.999189 ± 0.000062
-
-Test accuracy ranged from:
-
-0.999095 – 0.999285
-
-with a 95% confidence interval for the mean accuracy of approximately:
-
-[0.999150, 0.999228]
-
-Important Scientific Scope
-
-The eight descriptors identified here should not be interpreted as a universal or mathematically complete set of spacetime invariants.
-
-Rather, the result represents an empirical minimal representation within the investigated descriptor space and the eight selected spacetime families.
-
-The study therefore focuses on:
-
-- descriptor redundancy,
-- data-driven feature reduction,
-- intrinsic geometric representation,
-- classification consistency,
-- robustness across random splits.
-
-It does not attempt to replace Einstein's field equations or perform numerical relativity simulations.
-
-The spacetime samples are constructed from established analytical spacetime geometries and their associated geometric quantities.
-
-Methodology
-
-The main workflow is:
-
-Analytical Spacetime Families
-          ↓
-Synthetic Dataset Generation
-          ↓
-42 Candidate Descriptors
-          ↓
-Train / Validation / Test Splits
-          ↓
-XGBoost Feature Importance
-          ↓
-Sequential Top-K Feature Analysis
-          ↓
-Minimal 8-Feature Representation
-          ↓
-Independent Test Evaluation
-          ↓
-10-Seed Robustness Analysis
-          ↓
-Geometric Visualization
-
-Dataset
-
-Dataset size
-
-Total samples:       2,000,000
-Number of classes:   8
-Samples per class:   250,000
-Number of features:  42
-Noise level:         0.005
-
-Standard split
-
-Training:    1,600,000
-Validation:    200,000
-Testing:      200,000
-
-The target class is not included among the 42 input descriptors.
-
-Physical parameters are retained separately for scientific analysis and interpretation.
-
-42 Candidate Features
-
-The original descriptor space contains:
-
-R
-Ricci2
-Kretschmann
-Weyl2
-Weyl4
-r2_R
-r4_Ricci2
-r4_K
-r4_Weyl2
-r8_Weyl4
-abs_R
-abs_Ricci2
-abs_K
-abs_Weyl2
-abs_Weyl4
-log_R
-log_Ricci2
-log_K
-log_Weyl2
-log_Weyl4
-EM_Field
-EM2
-EM4
-Charge_Spin
-Charge_Spin2
-Rotation
-Rotation2
-Rotation_Curvature
-Mass_Charge
-Mass_Spin
-Cosmological
-Cosmological2
-Expansion
-Expansion2
-Expansion_Curvature
-Parity1
-Parity2
-Parity3
-Curvature_Charge
-Curvature_Rotation
-Curvature_Cosmological
-Ricci_Weyl_Coupling
+---
 
 Repository Structure
 
-A recommended repository organization is:
-
-.
+GR-Spacetime/
+│
 ├── README.md
 ├── LICENSE
 ├── CITATION.cff
@@ -611,86 +336,58 @@ A recommended repository organization is:
     ├── minimum_k/
     └── multi_seed/
 
-Reproducibility
+---
 
-The analysis uses fixed random seeds for the reported robustness experiments.
+Software Requirements
 
-The ten-seed analysis uses:
+The analysis is implemented in Python using:
 
-SEEDS = [42, 52, 62, 72, 82,
-         92, 102, 112, 122, 132]
+- Python 3.x
+- NumPy
+- Pandas
+- Scikit-learn
+- XGBoost
+- Matplotlib
 
-The feature-selection procedure separates feature ranking from the subsequent Top-K evaluation so that the minimal representation can be evaluated systematically.
+Additional dependencies may be required for specific visualization routines.
 
-Visualizations
-
-The repository contains visualizations for:
-
-- minimum-K feature analysis,
-- 42-feature importance ranking,
-- multi-seed robustness,
-- confusion matrix,
-- XGBoost learning behavior,
-- 2D intrinsic spacetime manifold,
-- 3D intrinsic spacetime manifold,
-- correlations among the final eight descriptors.
-
-Software
-
-The computational workflow is based primarily on Python and includes machine-learning and scientific-computing libraries such as:
-
-Python
-NumPy
-Pandas
-Scikit-learn
-XGBoost
-Matplotlib
-
-Additional packages may be required for the manifold visualization analysis.
-
-Research Questions
-
-The project addresses the following questions:
-
-1. Can intrinsic geometric descriptors distinguish the selected spacetime families?
-2. How much redundancy exists among the 42 candidate descriptors?
-3. What is the smallest empirically sufficient descriptor subset within the investigated feature space?
-4. Is the resulting compact representation robust to changes in random data splitting?
-5. How can the selected descriptors be interpreted in relation to spacetime geometry?
-
-Limitations
-
-The conclusions are restricted to:
-
-- the eight spacetime families investigated,
-- the 42 candidate descriptors,
-- the synthetic data-generation framework,
-- the selected noise level,
-- the machine-learning methodology used.
-
-The observed eight-feature representation therefore should not be interpreted as a proof that these eight descriptors constitute a universal complete basis for spacetime geometry.
-
-Establishing mathematical descriptor completeness would require a substantially different analysis involving appropriate geometric equivalence relations and theoretical conditions.
+---
 
 Citation
 
-If you use this repository or its datasets in academic work, please cite the associated paper:
+If you use the code, datasets, or methodology from this repository, please cite the associated manuscript:
 
-Hussain, M. M.; Bhatti, Z.-u.-H.; Rahman, J. U.
-Data-Driven Discovery of Minimal Intrinsic Curvature Dependencies
-in Spacetime Geometry.
+«Hussain, M. M.; Bhatti, Z.-u.-H.; Rahman, J. U.
+Data-Driven Discovery of Minimal Intrinsic Curvature Dependencies in Spacetime Geometry.»
 
-A formal citation will be added when the associated manuscript is published.
+A complete bibliographic citation will be added following publication.
 
-Contact
+---
+
+Authors
 
 Mirza Mudassar Hussain
-PhD Research Scholar
 Abdus Salam School of Mathematical Sciences
 University of the Punjab, Lahore, Pakistan
 
-GitHub: "Mirza-PU" (https://github.com/Mirza-PU)
+Zaeem-ul-Haq Bhatti
+University of the Punjab
+
+Jamshaid Ul Rahman
+
+---
+
+Project Status
+
+Dataset: Completed
+Feature-selection analysis: Completed
+Eight-feature representation: Identified
+10-seed robustness analysis: Completed
+Visualization: Completed
+Manuscript: In preparation
+
+---
 
 License
 
-The repository license and dataset usage conditions will be specified before public release.
+The license and data-use terms will be specified with the public release of the repository.
