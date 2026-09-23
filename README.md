@@ -71,85 +71,93 @@ Each spacetime family contributes approximately **250,000 samples**, giving a to
 
 ## Methodology
 
-The complete computational workflow is:
+The computational workflow consists of the following stages:
 
-```mermaid
-flowchart TD
-    A["Analytical Spacetime Families"] --> B["Geometric Quantity Generation"]
-    B --> C["Intrinsic Descriptor Representation"]
-    C --> D["42 Candidate Geometric Descriptors"]
-    D --> E["Synthetic Dataset Construction"]
-    E --> F["Stratified Train / Validation / Test Split"]
-    F --> G["XGBoost Baseline"]
-    G --> H["Feature-Importance Ranking"]
-    H --> I["Sequential Top-K Feature Selection"]
-    I --> J["Minimum Empirical Feature Set"]
-    J --> K["Multi-Seed Robustness Analysis"]
-    K --> L["Compact Intrinsic Representation"]
+<p align="center">
+  <b>Analytical Spacetime Families</b><br>
+  ↓<br>
+  <b>Geometric Quantity Generation</b><br>
+  ↓<br>
+  <b>Intrinsic Descriptor Representation</b><br>
+  ↓<br>
+  <b>42 Candidate Geometric Descriptors</b><br>
+  ↓<br>
+  <b>Synthetic Dataset Construction</b><br>
+  ↓<br>
+  <b>Stratified Train / Validation / Test Split</b><br>
+  ↓<br>
+  <b>XGBoost Baseline</b><br>
+  ↓<br>
+  <b>Feature-Importance Ranking</b><br>
+  ↓<br>
+  <b>Sequential Top-K Feature Selection</b><br>
+  ↓<br>
+  <b>Minimum Empirical Feature Set</b><br>
+  ↓<br>
+  <b>Multi-Seed Robustness Analysis</b><br>
+  ↓<br>
+  <b>Compact Intrinsic Representation</b>
+</p>
 
-The Intrinsic Descriptor Representation defines the candidate geometric feature space before machine-learning-based reduction. It contains curvature invariants, electromagnetic-related quantities, rotational descriptors, cosmological terms, and nonlinear combinations derived from the investigated spacetime families.
+The **Intrinsic Descriptor Representation** defines the candidate geometric feature space before machine-learning-based reduction. The descriptor space contains curvature invariants, electromagnetic-related quantities, rotational descriptors, cosmological terms, and nonlinear combinations derived from the investigated spacetime families.
 
 The resulting 42-dimensional descriptor space is subsequently evaluated using XGBoost to determine whether a substantially smaller subset can preserve the discriminative structure of the selected spacetime families.
 
-
-This ordering is scientifically clearer:
-
-**Spacetime families → geometric quantities → intrinsic descriptor representation → 42 descriptors → dataset → XGBoost → feature reduction → robustness → compact representation.**
-
-GitHub supports Mermaid flowcharts directly in Markdown, so the diagram should render as a flowchart rather than showing the raw arrows/code.
 ---
 
 ## Intrinsic Descriptor Representation
 
-The candidate descriptor space contains 42 quantities constructed from curvature invariants, electromagnetic-related quantities, rotational terms, cosmological quantities, and nonlinear combinations.
+The candidate descriptor space consists of 42 geometric descriptors constructed from curvature invariants, electromagnetic-related quantities, rotational terms, cosmological quantities, and nonlinear combinations.
 
-Candidate Descriptors
+### Candidate Descriptors
 
-#| Descriptor| #| Descriptor
-1| "R"| 22| "EM2"
-2| "Ricci2"| 23| "EM4"
-3| "Kretschmann"| 24| "Charge_Spin"
-4| "Weyl2"| 25| "Charge_Spin2"
-5| "Weyl4"| 26| "Rotation"
-6| "r2_R"| 27| "Rotation2"
-7| "r4_Ricci2"| 28| "Rotation_Curvature"
-8| "r4_K"| 29| "Mass_Charge"
-9| "r4_Weyl2"| 30| "Mass_Spin"
-10| "r8_Weyl4"| 31| "Cosmological"
-11| "abs_R"| 32| "Cosmological2"
-12| "abs_Ricci2"| 33| "Expansion"
-13| "abs_K"| 34| "Expansion2"
-14| "abs_Weyl2"| 35| "Expansion_Curvature"
-15| "abs_Weyl4"| 36| "Parity1"
-16| "log_R"| 37| "Parity2"
-17| "log_Ricci2"| 38| "Parity3"
-18| "log_K"| 39| "Curvature_Charge"
-19| "log_Weyl2"| 40| "Curvature_Rotation"
-20| "log_Weyl4"| 41| "Curvature_Cosmological"
-21| "EM_Field"| 42| "Ricci_Weyl_Coupling"
+| # | Descriptor | # | Descriptor |
+|---:|---|---:|---|
+| 1 | `R` | 22 | `EM2` |
+| 2 | `Ricci2` | 23 | `EM4` |
+| 3 | `Kretschmann` | 24 | `Charge_Spin` |
+| 4 | `Weyl2` | 25 | `Charge_Spin2` |
+| 5 | `Weyl4` | 26 | `Rotation` |
+| 6 | `r2_R` | 27 | `Rotation2` |
+| 7 | `r4_Ricci2` | 28 | `Rotation_Curvature` |
+| 8 | `r4_K` | 29 | `Mass_Charge` |
+| 9 | `r4_Weyl2` | 30 | `Mass_Spin` |
+| 10 | `r8_Weyl4` | 31 | `Cosmological` |
+| 11 | `abs_R` | 32 | `Cosmological2` |
+| 12 | `abs_Ricci2` | 33 | `Expansion` |
+| 13 | `abs_K` | 34 | `Expansion2` |
+| 14 | `abs_Weyl2` | 35 | `Expansion_Curvature` |
+| 15 | `abs_Weyl4` | 36 | `Parity1` |
+| 16 | `log_R` | 37 | `Parity2` |
+| 17 | `log_Ricci2` | 38 | `Parity3` |
+| 18 | `log_K` | 39 | `Curvature_Charge` |
+| 19 | `log_Weyl2` | 40 | `Curvature_Rotation` |
+| 20 | `log_Weyl4` | 41 | `Curvature_Cosmological` |
+| 21 | `EM_Field` | 42 | `Ricci_Weyl_Coupling` |
 
 ---
 
-Dataset
+## Dataset
 
 The complete dataset contains:
 
-Property| Value
-Total samples| 2,000,000
-Spacetime families| 8
-Samples per family| 250,000
-Candidate descriptors| 42
-Training samples| 1,600,000
-Validation samples| 200,000
-Test samples| 200,000
-Noise level| 0.005
-Missing values| None
-Infinite values| None
-Duplicate samples| None
+| Property | Value |
+|---|---:|
+| Total samples | 2,000,000 |
+| Spacetime families | 8 |
+| Samples per family | 250,000 |
+| Candidate descriptors | 42 |
+| Training samples | 1,600,000 |
+| Validation samples | 200,000 |
+| Test samples | 200,000 |
+| Noise level | 0.005 |
+| Missing values | None |
+| Infinite values | None |
+| Duplicate samples | None |
 
 The target spacetime family is kept separate from the descriptor matrix and is not used as an input feature.
 
-Physical parameters are also retained separately for scientific interpretation and are not treated as ordinary ML descriptors.
+Physical parameters are retained separately for scientific interpretation and are not treated as ordinary ML descriptors.
 
 ---
 
