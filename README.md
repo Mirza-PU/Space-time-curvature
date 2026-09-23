@@ -108,7 +108,7 @@ Compact Intrinsic Representation
 
 ---
 
-Intrinsic Descriptor Representation
+## Intrinsic Descriptor Representation
 
 The candidate descriptor space contains 42 quantities constructed from curvature invariants, electromagnetic-related quantities, rotational terms, cosmological quantities, and nonlinear combinations.
 
