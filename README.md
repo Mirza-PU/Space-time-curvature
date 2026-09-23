@@ -71,41 +71,32 @@ Each spacetime family contributes approximately **250,000 samples**, giving a to
 
 ## Methodology
 
-The computational workflow consists of the following stages:
+The complete computational workflow is:
 
-```text
-Analytical Spacetime Families
-            │
-            ▼
-Geometric Quantity Generation
-            │
-            ▼
-42 Candidate Descriptors
-            │
-            ▼
-Synthetic Dataset Construction
-            │
-            ▼
-Stratified Train / Validation / Test Split
-            │
-            ▼
-XGBoost Baseline
-            │
-            ▼
-Feature-Importance Ranking
-            │
-            ▼
-Sequential Top-K Evaluation
-            │
-            ▼
-Minimum Empirical Feature Set
-            │
-            ▼
-Multi-Seed Robustness Analysis
-            │
-            ▼
-Compact Intrinsic Representation.
+```mermaid
+flowchart TD
+    A["Analytical Spacetime Families"] --> B["Geometric Quantity Generation"]
+    B --> C["Intrinsic Descriptor Representation"]
+    C --> D["42 Candidate Geometric Descriptors"]
+    D --> E["Synthetic Dataset Construction"]
+    E --> F["Stratified Train / Validation / Test Split"]
+    F --> G["XGBoost Baseline"]
+    G --> H["Feature-Importance Ranking"]
+    H --> I["Sequential Top-K Feature Selection"]
+    I --> J["Minimum Empirical Feature Set"]
+    J --> K["Multi-Seed Robustness Analysis"]
+    K --> L["Compact Intrinsic Representation"]
 
+The Intrinsic Descriptor Representation defines the candidate geometric feature space before machine-learning-based reduction. It contains curvature invariants, electromagnetic-related quantities, rotational descriptors, cosmological terms, and nonlinear combinations derived from the investigated spacetime families.
+
+The resulting 42-dimensional descriptor space is subsequently evaluated using XGBoost to determine whether a substantially smaller subset can preserve the discriminative structure of the selected spacetime families.
+
+
+This ordering is scientifically clearer:
+
+**Spacetime families → geometric quantities → intrinsic descriptor representation → 42 descriptors → dataset → XGBoost → feature reduction → robustness → compact representation.**
+
+GitHub supports Mermaid flowcharts directly in Markdown, so the diagram should render as a flowchart rather than showing the raw arrows/code.
 ---
 
 ## Intrinsic Descriptor Representation
