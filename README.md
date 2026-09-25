@@ -433,7 +433,7 @@ Institute of Mathematics
 University of the Punjab, Lahore, Pakistan
 
 Jamshaid Ul Rahman
-
+Abdus Salam School of Mathematical Sciences, Government College University, Lahore 54600, Pakistan
 Machine Learning / Computational Research Collaboration
 
 ---
