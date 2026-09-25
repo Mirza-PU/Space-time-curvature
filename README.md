@@ -161,7 +161,7 @@ Physical parameters are retained separately for scientific interpretation and ar
 
 ---
 
-Machine Learning Framework
+## Machine Learning Framework
 
 The primary machine learning model is XGBoost, selected because it provides an efficient nonlinear model together with interpretable feature-importance measures.
 
@@ -175,7 +175,7 @@ The model is used for:
 
 ---
 
-Feature Reduction
+## Feature Reduction
 
 The feature-reduction procedure ranks the 42 candidate descriptors according to their contribution to the XGBoost classification model.
 
@@ -193,7 +193,7 @@ The resulting representation is therefore described as an empirically minimal re
 
 ---
 
-Final Eight-Feature Representation
+## Final Eight-Feature Representation
 
 The final compact representation contains the following eight descriptors:
 
@@ -211,7 +211,7 @@ These eight descriptors form the compact intrinsic representation investigated i
 
 ---
 
-Final Classification Performance
+## Final Classification Performance
 
 Using the final eight-feature representation:
 
@@ -226,7 +226,7 @@ The results indicate that the selected eight-feature representation retains very
 
 ---
 
-Multi-Seed Robustness
+## Multi-Seed Robustness
 
 To evaluate sensitivity to the random train/validation/test partition, the complete analysis was repeated using ten independent random seeds:
 
@@ -241,7 +241,7 @@ Macro-F1| 0.999189 ± 0.000062
 Precision| 0.999190 ± 0.000062
 Recall| 0.999189 ± 0.000062
 
-Accuracy Range
+## Accuracy Range
 
 Minimum accuracy : 0.999095
 Maximum accuracy : 0.999285
@@ -251,7 +251,7 @@ The small variation across independently generated data partitions provides an e
 
 ---
 
-Results and Visualizations
+## Results and Visualizations
 
 The repository contains the following figures generated from the analysis.
 
@@ -303,7 +303,7 @@ Figure 8 — Eight-Feature Correlation Heatmap
 
 ---
 
-Software Requirements
+## Software Requirements
 
 The analysis was developed using Python and standard scientific machine-learning libraries.
 
@@ -322,7 +322,7 @@ scipy
 
 ---
 
-Repository Structure
+## Repository Structure
 
 GR-Spacetime/
 │
@@ -356,58 +356,16 @@ GR-Spacetime/
 
 ---
 
-Installation
+## Installation
 
 Clone the repository:
 
-git clone https://github.com/Mirza-PU/GR-Spacetime.git
+git clone https://github.com/Mirza
 cd GR-Spacetime
 
-Create a virtual environment:
-
-python -m venv .venv
-
-Activate the environment.
-
-Linux / macOS
-
-source .venv/bin/activate
-
-Windows
-
-.venv\Scripts\activate
-
-Install the required packages:
-
-pip install -r requirements.txt
-
 ---
 
-Usage
-
-After installation, the main analysis can be executed using the corresponding scripts in the "scripts/" directory.
-
-Example:
-
-python scripts/train_xgboost.py
-
-Feature-selection analysis:
-
-python scripts/feature_selection.py
-
-Multi-seed robustness analysis:
-
-python scripts/multi_seed_analysis.py
-
-Visualization:
-
-python scripts/visualization.py
-
-If the actual script filenames differ, replace the commands above with the corresponding files in the repository.
-
----
-
-Reproducibility
+## Reproducibility
 
 The experiments use explicitly defined random seeds for reproducible data partitioning and model evaluation.
 
@@ -425,7 +383,7 @@ The feature-selection procedure is separated from the final evaluation to avoid 
 
 ---
 
-Scientific Scope
+## Scientific Scope
 
 This repository supports an exploratory computational investigation of intrinsic geometric descriptor redundancy.
 
@@ -445,7 +403,7 @@ The central scientific question is therefore:
 
 ---
 
-Citation
+## Citation
 
 If you use this repository or the associated methodology in academic work, please cite the corresponding research article:
 
@@ -461,7 +419,7 @@ The BibTeX entry will be updated when the article receives its final publication
 
 ---
 
-Authors
+## Authors
 
 Mirza Mudassar Hussain
 
@@ -480,7 +438,7 @@ Machine Learning / Computational Research Collaboration
 
 ---
 
-Contributions
+## Contributions
 
 Contributions, scientific discussion, and reproducibility improvements are welcome.
 
@@ -499,7 +457,7 @@ Please open an issue before making substantial methodological changes.
 
 ---
 
-License
+## License
 
 This repository is intended for academic and research use.
 
